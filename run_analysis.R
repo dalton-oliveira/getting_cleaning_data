@@ -1,5 +1,10 @@
 library(data.table)
 library(dplyr)
+if (!file.exists("UCI HAR Dataset")) {
+  download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip", destfile = "data.zip")
+  unzip(zipfile = "data.zip")
+  file.remove("data.zip")
+}
 
 features <- fread("UCI HAR Dataset/features.txt", col.names = c("featureId", "featureName"), header = FALSE)
 activity <- fread("UCI HAR Dataset/activity_labels.txt", col.names = c("activityId", "activityLabel"), header = FALSE)
